@@ -66,5 +66,19 @@
 ## Suppression des tables à la fin des tests
 <img width="385" height="83" alt="Capture d&#39;écran 2026-02-23 122440" src="https://github.com/user-attachments/assets/8ffa41bb-48a8-4cc4-83fb-0f21c2ea962f" />
 
+## Diagramme de classes 
+<img width="592" height="486" alt="Capture d&#39;écran 2026-02-23 203725" src="https://github.com/user-attachments/assets/1cc558fe-6fc0-4286-9ba7-440d458f4cf6" />
 
+## Légende des relations
+Utilisateur ↔ Réservation : Un utilisateur peut effectuer plusieurs réservations, mais chaque réservation appartient à un seul utilisateur. C'est une relation OneToMany/ManyToOne bidirectionnelle.
 
+Salle ↔ Réservation : Une salle peut être réservée plusieurs fois, mais une réservation ne concerne qu'une seule salle. C'est aussi une relation OneToMany/ManyToOne.
+
+Salle ↔ Equipement : Une salle peut contenir plusieurs équipements et un équipement peut être présent dans plusieurs salles. C'est une relation ManyToMany gérée par une table de jointure.
+
+## Les annotations
+@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true) : Relation un-vers-plusieurs avec propagation et suppression orpheline
+
+@ManyToOne @JoinColumn(name="utilisateur_id") : Une réservation appartient à un utilisateur
+
+@ManyToMany @JoinTable(name="salle_equipement") : Relation entre salles et équipements
